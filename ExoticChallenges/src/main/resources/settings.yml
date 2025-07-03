@@ -1,0 +1,92 @@
+Messages:
+  Join: "entrato"
+  Leave: "quittato"
+
+Challenges:
+  num_challenge: 5 #max 10
+
+Mode_plugin:
+  type_of_mode: "multiworld"
+#bungeecord or multiworld
+
+###############################
+# bungeecord = using multiple server to create the lobbys.
+# multiworld = using multiple worlds to create the lobbys.
+###############################
+
+Type_mode_bungeecord:
+  type_bungeecord: "hub"
+# IMPORTANT: If mode is on "bungeecord", put here "hub" or "lobby"
+
+###############################
+# hub = the server where is this plugin is the main hub
+# lobby = all the worlds in this server, will be used to create the lobbys.
+###############################
+
+Lobby:
+  time_rounds: 30 #Time of rounds in seconds. Min secs = 10
+  time_between_two_rounds: 26 #Time to wait when a round ends and a new one has to start. Min secs = 15
+  num_rounds: 5 #max 10
+  num_player: 1 #max 8 (4x4 a scacchiera)
+  file_lobby: "default.schem" #nome del file della lobby da generare. ES: default.schem = "default". IMPORTANT: he must be a file schem from worldedit
+  #viene spawnata nella stessa altezza in cui è stata costruita
+
+#---------------------Chellenge Settings Section-------------------------
+#types:
+#type = pickup: take an item,
+#type = destroy: destroy a block,
+#type = breeding: breed a specific animal,
+#type = reacing_height: reaching a specific height,
+#type = kill_mob: kill a specific mob,
+#type = craft: craft specific item
+#type = summon: summon a specific mob[iron_golem or snow_man]
+#type = dimension: reach a specific dimension
+#type = shoot_a_projectile: shoot a specific projectile(snowball, arrows, enderpeal, potions etc...)
+#type = place_block: place a specific block
+#type = reach_biome: reach a specific biome
+#type = get_advancements: get a specific advancement
+#type = eat_food: eat a specific food
+#type = death_message: get a death message from a specific damage
+#custom events:
+#
+#
+#
+#
+
+Generation_of_challenges: #random or manual. se è random e non ci sono challenge registrate, vengono generati un %num di challenge(dove %num è Challenges.num_challenge) e ad ogni challenge generata, i suoi valori e condizioni vengono impostati randomicamente(ovviamente rispetteranno anche le condizioni(es: se type è pickup, allora su target non può essere 10 che è per l'altezza))
+#invece se è random e ci sono challenge registrate, allora ci sarà un sistema che ne sceglie un %num di challenge tra quelle registrate(es: se num_challenge è 2 e io ho messo 5 challenge registrate, allora ne sceglierà 2 challenge registrate randomicamente)
+#se è manual, allora vengono messe in game le challenge registrare dal numero più piccolo al numero più grande in ordine(se è manual ma non ci sono challenge registrate, allora da errore)
+
+#registration of challenges
+#la quantità di challenge registrate devono rispettare il numero di Challenge.num_challenge. sennò da errore
+Challenges_task:
+  1:
+    difficulty: #easy(2 min), normal(3 min), hard(4 min), extreme(6 min)(ogni difficoltà, ha il suo tempo e viene mostrato nel game con il suo colore(tipo easy è verde e extreme è rosso))
+    type:
+    name_of_task:
+    amount:
+    height:
+    target:
+    time_to_complete_task: 300 #in seconds. minimum is 10
+    description:
+      Other_condition_to_reach:
+        num_of_item_to_pickup: 1, APPLE, true #true = deve rispettare la condizione per completare la task. invece se è false, allora la condizione viene ignorata. 1 è il numero di item da avere nell'inventario(quindi è la stringa o l'int che viene prima di true o false è il target)
+        height_for_reaching_height: 10, true #y = 10
+        craft_item: GOLDEN_BLOCK, true #blocco da craftare è gold_block
+        kill_mob: CREEPER, true
+        eat_food: STEAK, true
+        summon_mob: IRON_GOLEM, true
+        breeding_mob: TURTLE, true
+        place_block: NETHERITE_BLOCK, true
+        destroy_block: STONE, true
+        reach_biome: SAVANA, true
+        death_message: DAMAGE_ANVIL, true
+        get_advancement: SMELT_IRON, true #se è true, verrà aggiunti 1 minuto e mezzo o 2 in più di tempo
+        dimension_to_reach: nether, true #il player deve raggiungere la dimensione inserita
+        shoot_a_projectile: SPECTRAL_ARROW, true #il player deve sparare quel specifico item(solo se è lanciabile(tipo freccie, potion, enderpeal, snowball etc...), sennò dare errore in console)
+        #ad esempio, se type è craft, allora su target, ci deve essere per forza il nome di un oggetto craftabile(solamente se l'oggetto è craftabile, sennò mostrare in console un errore)
+        #oltre al principale obiettivo, ci sono anche le condizioni che dovranno essere completate(quelle che sono su true). ES: oltre che devo craftare un golden_block, devo killare anche un creeper e devo raggiungere anche l'altezza 80.
+        #più condizioni ci sono e più il tempo dei round sarà maggiore(viene aggiunto 1 minuto in più per ogni condizione su true)
+        #se amount è = 2, verranno aggiunti 1 minuto in più, invece se ad esempio è 5, verranno aggiunti 2.5 minuti in più
+        #fare una lista qua sotto di tutti i tipi di target per ogni type. es: if type = summon -> target: [IRON_GOLEM, SNOW_MAN]
+        #opzionale: in base al tempo totale, viene catalogato con la sua difficolta(se il tot tempo è 2, allora sarà easy, invece se è 6 minuti, allora sarà extreme)

@@ -1,0 +1,62 @@
+name: ExoticChallenges
+version: '${project.version}'
+main: org.yastral.exoticchallenges.ExoticChallenges
+api-version: '1.20'
+softdepend: [ ProtocolLib ]
+commands:
+  gui:
+    description: "Apri la gui"
+    usage: "/gui"
+    permission: plugintest.command.gui
+    permission-message: "Non hai i permessi per aprire la gui"
+  lobby:
+    description: "Comando per accedere a una lobby specifica"
+    usage: "/lobby"
+    permission: exoticchallenge.command.lobby
+    permission-message: "Non hai i permessi per eseguire il comando"
+  queue:
+    description: "Comando per creare o accedere ad una lobby randomica"
+    usage: "/queue"
+    permission: exoticchallenge.command.queue
+    permission-message: "Non hai i permessi per eseguire il comando"
+  leave:
+    description: "Comando per creare o accedere ad una lobby randomica"
+    usage: "/leave"
+    permission: exoticchallenge.command.leave
+    permission-message: "Non hai i permessi per eseguire il comando"
+  region:
+    description: "Comando per creare o accedere ad una lobby randomica"
+    usage: "/region"
+    aliases: [ rg ]
+    permission: plugintest.command.gui
+    permission-message: "Non hai i permessi per aprire la gui"
+  test:
+    description: "Comando per creare o accedere ad una lobby randomica"
+    usage: "/test"
+    aliases: [ rg ]
+    permission: plugintest.command.gui
+    permission-message: "Non hai i permessi per aprire la gui"
+  boh:
+    description: "Comando per creare o accedere ad una lobby randomica"
+    usage: "/boh"
+    aliases: [ bh ]
+    permission: plugintest.command.gui
+    permission-message: "Non hai i permessi per aprire la gui"ì
+permissions :
+  exoticchallenge.command.leave:
+    description: "This is a permission node"
+    default: true #su op solo gli op hanno questo permesso
+  exoticchallenge.command.queue:
+    description: "This is a permission node"
+    default: true #su op solo gli op hanno questo permesso
+  exoticchallenge.command.lobby:
+    description: "This is a permission node"
+    default: true #su op solo gli op hanno questo permesso
+  cowcannon.command.usage:
+    description: "This is a permission node"
+    default: true #su op solo gli op hanno questo permesso
+    children:
+      cowcannon.command.usage.baby: true
+  #another.permission.node:
+  #  description: "This is another permission node"
+  #  default: not op
